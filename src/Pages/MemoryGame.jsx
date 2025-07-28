@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import MemoryBoard from "./MemoryBoard";
 import Card from "../Components/Card";
+import { shuffleArray } from "../helpers";
 
 const cards = ["A", "B", "C", "D", "E", "F"];
 
 const cardsDoubled = [...cards, ...cards];
+const shuffledCards = shuffleArray(cardsDoubled);
 
 const MemoryGame = () => {
     const [players, setPlayers] = useState({
@@ -51,7 +53,7 @@ const MemoryGame = () => {
         <>
             <MemoryBoard togglePlayer={togglePlayer} players={players} />;
             <div style={styles.cardContainer}>
-                {cardsDoubled.map((card, i) => {
+                {shuffledCards.map((card, i) => {
                     return (
                         <Card
                             key={i}

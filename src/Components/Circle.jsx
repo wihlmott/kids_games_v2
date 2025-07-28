@@ -11,14 +11,15 @@ const Circle = ({ value, answer }) => {
 
     const styles = {
         circle: {
+            boxSizing: "border-box",
             cursor: "pointer",
             borderRadius: "50%",
-            padding: "6px",
+            padding: "12px",
             display: "inline-block",
             width: "5rem",
             height: "5rem",
             boxShadow: "1px 1px 2px rgba(0,0,0,.3)",
-            fontSize: "5rem",
+            fontSize: "3rem",
             fontWeight: "bold",
             textAlign: "center",
             margin: "6px",
