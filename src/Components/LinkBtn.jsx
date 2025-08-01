@@ -1,17 +1,27 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import Btn from "./Btn";
 import SettingsBtn from "./SettingsBtn";
 import SettingsMenu from "./SettingsMenu";
 
+import { gameModesConfig } from "../Config";
+import { SettingsContext } from "../Contexts";
+
 const LinkBtn = ({ to, text, onClick, transparent = true }) => {
+    const navigate = useNavigate();
+
+    const [_, setGameSettings] = useContext(SettingsContext);
     const [openSettings, setOpenSettings] = useState(false);
 
-    const handleSettings = () => {
-        console.log("Settings button clicked " + text);
+    const handleSettingsOpen = () => setOpenSettings(!openSettings);
 
-        setOpenSettings(!openSettings);
+    const handleSettingsSelect = (e) => {
+        setGameSettings({ GameMode: text, options: e });
+        navigate(to);
+
+        console.log("Selected settings for", text);
+        console.table(e);
     };
 
     return (
@@ -26,8 +36,15 @@ const LinkBtn = ({ to, text, onClick, transparent = true }) => {
             >
                 <Btn text={text} onClick={onClick} transparent={transparent} />
             </Link>
-            <SettingsBtn onClick={handleSettings} />
-            {openSettings && <SettingsMenu options={["numbers", "pictures"]} />}
+            <SettingsBtn onClick={handleSettingsOpen} />
+            {openSettings && (
+                <SettingsMenu
+                    options={gameModesConfig[text]}
+                    gameMode={text}
+                    onSelect={handleSettingsSelect}
+                    onClose={() => setOpenSettings(false)}
+                />
+            )}
         </div>
     );
 };

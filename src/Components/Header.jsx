@@ -22,6 +22,10 @@ const Header = () => {
             borderBottomLeftRadius: "20px",
             boxShadow: "2px 2px 4px rgba(0,0,0,.5)",
             transition: "margin-top 1s",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
         },
         amount: {
             position: "relative",

@@ -5,3 +5,8 @@ export const OperationContext = createContext({
     value: "+",
     symbol: "+",
 });
+
+export const SettingsContext = createContext({
+    gameMode: "Game",
+    options: { title: "", values: [] },
+});

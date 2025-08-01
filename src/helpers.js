@@ -17,3 +17,9 @@ export function shuffleArray(array) {
 
     return array;
 }
+
+export function doubleAndShuffle(array, x) {
+    const shuffleAndCut = shuffleArray([...array]).slice(0, x);
+    const doubled = [...shuffleAndCut, ...shuffleAndCut];
+    return shuffleArray(doubled);
+}
