@@ -4,7 +4,7 @@ const Btn = ({ text, onClick, transparent = true }) => {
             style={{
                 boxShadow: "1px 1px 5px rgba(0,0,0,.4)",
                 backgroundColor: transparent ? "rgba(0,0,0,.1)" : "white",
-                margin: "0 auto 12px",
+                marginTop: "12px",
                 width: "200px",
                 padding: "4px 12px",
                 borderRadius: "4px",
