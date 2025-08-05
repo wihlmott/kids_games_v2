@@ -8,8 +8,8 @@ const MathPage = ({ level }) => {
     const [operation, _] = useContext(OperationContext);
 
     const question = {
-        number1: Math.round(Math.random() * level * 4),
-        number2: Math.round(Math.random() * level * 4),
+        number1: Math.round(Math.random() * level * 5),
+        number2: Math.round(Math.random() * level * 5),
         operation: operation,
         answer: function () {
             switch (operation.value) {

@@ -34,10 +34,10 @@ export const operationsConfig = [
 
 export const gameModesConfig = {
     "math game": [
-        { title: "level 1", value: 1 },
-        { title: "level 2", value: 2 },
-        { title: "level 3", value: 3 },
-        { title: "level 4", value: 4 },
+        { title: "level 1", values: 1 },
+        { title: "level 2", values: 2 },
+        { title: "level 3", values: 3 },
+        { title: "level 4", values: 4 },
     ],
     "memory game": [
         {

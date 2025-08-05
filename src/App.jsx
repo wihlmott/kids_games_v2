@@ -15,11 +15,15 @@ function App() {
     });
 
     const [cards, setCards] = useState([]);
+    const [level, setLevel] = useState(1);
 
     useEffect(() => {
-        setCards(
-            doubleAndShuffle(gameSettings.options.values, amountOfMatches)
-        );
+        console.log("Game settings updated:", gameSettings);
+
+        // setCards(
+        //     doubleAndShuffle(gameSettings.options.values, amountOfMatches)
+        // );
+        // setLevel(gameSettings.options.values);
     }, [gameSettings]);
 
     return (
@@ -28,7 +32,10 @@ function App() {
                 <Routes>
                     {/* <Route> */}
                     <Route path="/" element={<Home />} />
-                    <Route path="MathGame" element={<MathGame />} />
+                    <Route
+                        path="MathGame"
+                        element={<MathGame level={level} />}
+                    />
                     <Route
                         path="MemoryGame"
                         element={<MemoryGame cards={cards} />}

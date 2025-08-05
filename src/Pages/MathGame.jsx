@@ -3,7 +3,7 @@ import MathPage from "./MathPage";
 import Header from "../Components/Header";
 import { OperationContext } from "../Contexts";
 
-const MathGame = ({ level = 2 }) => {
+const MathGame = ({ level }) => {
     const [operation, setOperation] = useState({
         title: "addition",
         value: "+",

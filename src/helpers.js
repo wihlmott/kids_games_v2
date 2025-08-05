@@ -19,6 +19,8 @@ export function shuffleArray(array) {
 }
 
 export function doubleAndShuffle(array, x) {
+    if (!array) return;
+
     const shuffleAndCut = shuffleArray([...array]).slice(0, x);
     const doubled = [...shuffleAndCut, ...shuffleAndCut];
     return shuffleArray(doubled);
