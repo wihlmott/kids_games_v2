@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Btn from "./Btn";
-import SettingsBtn from "./SettingsBtn";
 import SettingsMenu from "./SettingsMenu";
+// import SettingsBtn from "./SettingsBtn";
 
 import { gameModesConfig } from "../Config";
 import { SettingsContext } from "../Contexts";
@@ -24,16 +24,17 @@ const LinkBtn = ({ to, text, onClick, transparent = true }) => {
     return (
         <div style={{ margin: "auto", width: "fit-content" }}>
             <Link
-                to={to}
+                // to={to}
                 style={{
                     textDecoration: "none",
                     color: "black",
                     display: "inline-block",
                 }}
+                onClick={handleSettingsOpen}
             >
                 <Btn text={text} onClick={onClick} transparent={transparent} />
             </Link>
-            <SettingsBtn onClick={handleSettingsOpen} />
+            {/* <SettingsBtn onClick={handleSettingsOpen} /> */}
             {openSettings && (
                 <SettingsMenu
                     options={gameModesConfig[text]}

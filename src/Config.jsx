@@ -94,3 +94,5 @@ export const gameModesConfig = {
         },
     ],
 };
+
+export const amountOfMatches = 10;

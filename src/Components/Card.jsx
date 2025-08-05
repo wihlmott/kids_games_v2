@@ -34,8 +34,8 @@ const Card = ({
 
 const styles = {
     card: {
-        width: "100px",
-        height: "150px",
+        width: "80px",
+        height: "120px",
         margin: "6px",
         borderRadius: "6px",
         display: "inline-block",

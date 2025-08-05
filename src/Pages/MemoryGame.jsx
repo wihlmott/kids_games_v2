@@ -6,7 +6,7 @@ const MemoryGame = ({ cards }) => {
     const [players, setPlayers] = useState({
         player1: { score: 0 },
         player2: { score: 0 },
-        active: true,
+        active: "player1",
     });
 
     const [firstSelection, setFirstSelection] = useState(null);
@@ -19,8 +19,6 @@ const MemoryGame = ({ cards }) => {
         });
 
     const sendSelection = (text, id) => {
-        console.log(text, id);
-
         if (secondSelection != null) return;
 
         firstSelection
@@ -30,8 +28,26 @@ const MemoryGame = ({ cards }) => {
 
     const check = () =>
         firstSelection[0] == secondSelection[0]
-            ? setFound((prev) => [...prev, firstSelection[0]])
-            : null;
+            ? (() => {
+                  setFound((prev) => [...prev, firstSelection[0]]);
+                  setPlayers((prev) => {
+                      return {
+                          ...prev,
+                          [prev.active]: {
+                              score: prev[prev.active].score + 1,
+                          },
+                          active:
+                              prev.active == "player1" ? "player1" : "player2",
+                      };
+                  });
+              })()
+            : setPlayers((prev) => {
+                  return {
+                      ...prev,
+                      active: prev.active == "player1" ? "player2" : "player1",
+                  };
+              });
+
     const reset = () => {
         setTimeout(() => {
             setFirstSelection(null);
@@ -77,7 +93,7 @@ const MemoryGame = ({ cards }) => {
 const styles = {
     cardContainer: {
         textAlign: "center",
-        width: "96vw",
+        width: "98vw",
         height: "auto",
         position: "absolute",
         top: "50%",

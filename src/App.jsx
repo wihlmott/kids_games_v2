@@ -6,7 +6,7 @@ import Home from "./Pages/Home";
 import MemoryGame from "./Pages/MemoryGame";
 import { SettingsContext } from "./Contexts";
 import { doubleAndShuffle } from "./helpers";
-import { gameModesConfig } from "./Config";
+import { amountOfMatches } from "./Config";
 
 function App() {
     const [gameSettings, setGameSettings] = useState({
@@ -14,15 +14,12 @@ function App() {
         options: { title: "", values: [] },
     });
 
-    const [cards, setCards] = useState(
-        doubleAndShuffle(gameModesConfig["memory game"][0].values, 6)
-    );
-    useEffect(() => {
-        console.log("Game settings updated:", gameSettings);
-        console.table(gameSettings.options);
+    const [cards, setCards] = useState([]);
 
-        setCards(doubleAndShuffle(gameSettings.options.values, 6));
-        console.log("Cards for Memory Game:", cards);
+    useEffect(() => {
+        setCards(
+            doubleAndShuffle(gameSettings.options.values, amountOfMatches)
+        );
     }, [gameSettings]);
 
     return (

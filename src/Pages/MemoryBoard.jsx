@@ -1,37 +1,48 @@
+import ConfettiExplosion from "react-confetti-explosion";
 import memoryBackground from "/memoryBackground.jpg";
+import { amountOfMatches } from "../Config";
 
-const MemoryBoard = ({ togglePlayer, players }) => {
-    const handleClick = () => togglePlayer(); //cause to toggle only on incorrect selection
-
+const MemoryBoard = ({ players }) => {
     const activeShadow =
         "drop-shadow(5px 0 3px white) drop-shadow(-5px 0 3px white) drop-shadow(0 5px 3px white) drop-shadow(0 -5px 3px white)";
 
     return (
-        <div style={styles.background} onClick={handleClick}>
+        <div style={styles.background}>
             <div
                 style={{
                     ...styles.playerDiv,
                     top: "0",
-                    backgroundColor: `rgba(0,0,0,${
-                        players.active ? ".2" : "0"
+                    backgroundColor: `rgba(255,0,0,${
+                        players.active == "player1" ? ".2" : "0"
                     })`,
                 }}
             >
                 <p
                     style={{
                         ...styles.text,
-                        filter: players.active ? activeShadow : "none",
+                        filter:
+                            players.active == "player1" ? activeShadow : "none",
+                        marginTop: "2rem",
                     }}
                 >
                     player 1 -- {players.player1.score}
                 </p>
             </div>
+            {players["player1"].score + players["player2"].score ==
+                amountOfMatches && (
+                <ConfettiExplosion
+                    force={0.8}
+                    duration={3000}
+                    particleCount={250}
+                    width={1600}
+                />
+            )}
             <div
                 style={{
                     ...styles.playerDiv,
                     bottom: "0",
-                    backgroundColor: `rgba(0,0,0,${
-                        !players.active ? ".2" : "0"
+                    backgroundColor: `rgba(0,0,255,${
+                        players.active == "player2" ? ".2" : "0"
                     })`,
                 }}
             >
@@ -39,10 +50,12 @@ const MemoryBoard = ({ togglePlayer, players }) => {
                     style={{
                         ...styles.text,
                         bottom: "0",
-                        filter: !players.active ? activeShadow : "none",
+                        marginBottom: "4rem",
+                        filter:
+                            players.active == "player2" ? activeShadow : "none",
                     }}
                 >
-                    player 2 -- {players.player1.score}
+                    player 2 -- {players.player2.score}
                 </p>
             </div>
         </div>
