@@ -1,3 +1,20 @@
+import bear1 from "./assets/memory_images/bear1.jpg";
+import cow1 from "./assets/memory_images/cow1.jpg";
+import croc1 from "./assets/memory_images/croc1.jpg";
+import deer1 from "./assets/memory_images/deer1.jpg";
+import elephant1 from "./assets/memory_images/elephant1.jpg";
+import giraffe1 from "./assets/memory_images/giraffe1.jpg";
+import hippo1 from "./assets/memory_images/hippo1.jpg";
+import monkey1 from "./assets/memory_images/monkey1.jpg";
+import panda1 from "./assets/memory_images/panda1.jpg";
+import pig1 from "./assets/memory_images/pig1.jpg";
+import rabbit1 from "./assets/memory_images/rabbit1.jpg";
+import tiger1 from "./assets/memory_images/tiger1.jpg";
+import zebra1 from "./assets/memory_images/zebra1.jpg";
+import sheep1 from "./assets/memory_images/sheep1.jpg";
+import rhino1 from "./assets/memory_images/rhino1.jpg";
+import racoon1 from "./assets/memory_images/racoon1.jpg";
+
 import DivideIcon from "./Components/DivideIcon";
 
 export const operationsConfig = [
@@ -54,6 +71,26 @@ export const gameModesConfig = {
                 "Z",
             ],
         },
-        { title: "pictures", values: [] },
+        {
+            title: "pictures",
+            values: [
+                bear1,
+                cow1,
+                croc1,
+                deer1,
+                elephant1,
+                giraffe1,
+                hippo1,
+                monkey1,
+                panda1,
+                sheep1,
+                pig1,
+                rabbit1,
+                racoon1,
+                rhino1,
+                tiger1,
+                zebra1,
+            ],
+        },
     ],
 };

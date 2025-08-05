@@ -65,6 +65,7 @@ const MemoryGame = ({ cards }) => {
                             }
                             text={card}
                             id={i}
+                            type={cards[0].length < 2 ? "text" : "image"}
                         />
                     );
                 })}

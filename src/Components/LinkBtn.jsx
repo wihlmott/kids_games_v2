@@ -19,9 +19,6 @@ const LinkBtn = ({ to, text, onClick, transparent = true }) => {
     const handleSettingsSelect = (e) => {
         setGameSettings({ GameMode: text, options: e });
         navigate(to);
-
-        console.log("Selected settings for", text);
-        console.table(e);
     };
 
     return (
