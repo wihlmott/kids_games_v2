@@ -93,7 +93,7 @@ const MemoryGame = ({ cards }) => {
 const styles = {
     cardContainer: {
         textAlign: "center",
-        width: "98vw",
+        width: "104vw",
         height: "auto",
         position: "absolute",
         top: "50%",
