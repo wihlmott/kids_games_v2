@@ -18,12 +18,11 @@ function App() {
     const [level, setLevel] = useState(1);
 
     useEffect(() => {
-        console.log("Game settings updated:", gameSettings);
+        const values = gameSettings.options.values;
 
-        // setCards(
-        //     doubleAndShuffle(gameSettings.options.values, amountOfMatches)
-        // );
-        // setLevel(gameSettings.options.values);
+        values.length > 1
+            ? setCards(doubleAndShuffle(values, amountOfMatches))
+            : setLevel(values);
     }, [gameSettings]);
 
     return (
