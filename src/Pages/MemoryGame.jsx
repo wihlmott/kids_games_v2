@@ -92,14 +92,15 @@ const MemoryGame = ({ cards }) => {
 
 const styles = {
     cardContainer: {
+        boxSizing: "border-box",
         textAlign: "center",
         width: "104vw",
-        height: "auto",
+        height: "78vh",
         position: "absolute",
         top: "50%",
         left: "50%",
         transform: "translate(-50%,-50%)",
-        // boxShadow: "2px 0 10px rgba(0,0,0,.6), -2px 0 10px rgba(0,0,0,.6)",
+        padding: "32px 0",
     },
 };
 

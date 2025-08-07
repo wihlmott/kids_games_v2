@@ -17,16 +17,20 @@ const MemoryBoard = ({ players }) => {
                     })`,
                 }}
             >
-                <p
-                    style={{
-                        ...styles.text,
-                        filter:
-                            players.active == "player1" ? activeShadow : "none",
-                        marginTop: "2rem",
-                    }}
-                >
-                    player 1 -- {players.player1.score}
-                </p>
+                <div style={styles.name}>
+                    <p
+                        style={{
+                            ...styles.text,
+                            bottom: "0",
+                            filter:
+                                players.active == "player1"
+                                    ? activeShadow
+                                    : "none",
+                        }}
+                    >
+                        player 1 -- {players.player1.score}
+                    </p>
+                </div>
             </div>
             {players["player1"].score + players["player2"].score ==
                 amountOfMatches && (
@@ -46,17 +50,20 @@ const MemoryBoard = ({ players }) => {
                     })`,
                 }}
             >
-                <p
-                    style={{
-                        ...styles.text,
-                        bottom: "0",
-                        marginBottom: "4rem",
-                        filter:
-                            players.active == "player2" ? activeShadow : "none",
-                    }}
-                >
-                    player 2 -- {players.player2.score}
-                </p>
+                <div style={{ ...styles.name, bottom: "0" }}>
+                    <p
+                        style={{
+                            ...styles.text,
+                            top: "0",
+                            filter:
+                                players.active == "player2"
+                                    ? activeShadow
+                                    : "none",
+                        }}
+                    >
+                        player 2 -- {players.player2.score}
+                    </p>
+                </div>
             </div>
         </div>
     );
@@ -76,6 +83,11 @@ const styles = {
         display: "flex",
         alignItems: "center",
     },
+    name: {
+        position: "absolute",
+        height: "10vh",
+        width: "100%",
+    },
 
     playerDiv: {
         position: "absolute",
@@ -86,12 +98,12 @@ const styles = {
 
     text: {
         textTransform: "uppercase",
-        margin: "auto",
         position: "absolute",
         left: "50%",
         transform: "translateX(-50%)",
         fontSize: "1.5rem",
         fontWeight: "bold",
+        margin: "0",
     },
 };
 
