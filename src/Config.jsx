@@ -1,3 +1,7 @@
+import mathBackground from "/mathBackground.webp";
+import memoryBackground from "/memoryBackground.webp";
+import homeBackground from "/homeBackground.webp";
+
 import bear1 from "./assets/memory_images/bear1.jpg";
 import cow1 from "./assets/memory_images/cow1.jpg";
 import croc1 from "./assets/memory_images/croc1.jpg";
@@ -16,6 +20,12 @@ import rhino1 from "./assets/memory_images/rhino1.jpg";
 import racoon1 from "./assets/memory_images/racoon1.jpg";
 
 import DivideIcon from "./Components/DivideIcon";
+
+export const backgroundImages = {
+    mathBackground: mathBackground,
+    memoryBackground: memoryBackground,
+    homeBackground: homeBackground,
+};
 
 export const operationsConfig = [
     { title: "addition", value: "+", symbol: "+", amount: 0 },

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import MathPage from "./MathPage";
 import Header from "../Components/Header";
-import { OperationContext } from "../Contexts";
+import { HeartContext, OperationContext } from "../Contexts";
+
+const MemoMathPage = React.memo(MathPage);
 
 const MathGame = ({ level }) => {
     const [operation, setOperation] = useState({
@@ -10,11 +12,18 @@ const MathGame = ({ level }) => {
         symbol: "+",
         amount: 0,
     });
+    const [heart, setHeart] = useState({
+        first: true,
+        second: true,
+        third: true,
+    });
 
     return (
         <OperationContext.Provider value={[operation, setOperation]}>
-            <Header />
-            <MathPage level={level} />
+            <HeartContext.Provider value={[heart, setHeart]}>
+                <Header />
+                <MemoMathPage level={level} />
+            </HeartContext.Provider>
         </OperationContext.Provider>
     );
 };

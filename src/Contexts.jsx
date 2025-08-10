@@ -6,6 +6,12 @@ export const OperationContext = createContext({
     symbol: "+",
 });
 
+export const HeartContext = createContext({
+    first: true,
+    second: true,
+    third: true,
+});
+
 export const SettingsContext = createContext({
     gameMode: "Game",
     options: { title: "", values: [] },

@@ -1,4 +1,4 @@
-import homeBackground from "/homeBackground.jpg";
+import { backgroundImages } from "../Config";
 
 import LinkBtn from "../Components/LinkBtn";
 
@@ -20,7 +20,7 @@ const Home = () => {
 
 const styles = {
     background: {
-        backgroundImage: `url(${homeBackground})`,
+        backgroundImage: `url(${backgroundImages.homeBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         opacity: ".85",

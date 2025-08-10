@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import Calculation from "../Components/Calculation";
 import Options from "../Components/Options";
-import mathBackground from "/mathBackground.jpg";
 import { OperationContext } from "../Contexts";
+import { backgroundImages } from "../Config";
 
-const MathPage = ({ level }) => {
+const MathPage = ({ level, flagWrong }) => {
     const [operation, _] = useContext(OperationContext);
 
     const question = {
@@ -36,14 +36,14 @@ const MathPage = ({ level }) => {
                 operation={question.operation}
                 answer={question.answer()}
             />
-            <Options answer={question.answer()} />
+            <Options answer={question.answer()} flagWrong={flagWrong} />
         </div>
     );
 };
 
 const styles = {
     background: {
-        backgroundImage: `url(${mathBackground})`,
+        backgroundImage: `url(${backgroundImages.mathBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         opacity: ".85",

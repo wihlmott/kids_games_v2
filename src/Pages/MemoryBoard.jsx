@@ -1,6 +1,5 @@
 import ConfettiExplosion from "react-confetti-explosion";
-import memoryBackground from "/memoryBackground.jpg";
-import { amountOfMatches } from "../Config";
+import { amountOfMatches, backgroundImages } from "../Config";
 
 const MemoryBoard = ({ players }) => {
     const activeShadow =
@@ -71,7 +70,7 @@ const MemoryBoard = ({ players }) => {
 
 const styles = {
     background: {
-        backgroundImage: `url(${memoryBackground})`,
+        backgroundImage: `url(${backgroundImages.memoryBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         opacity: ".85",
