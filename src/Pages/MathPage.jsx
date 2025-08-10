@@ -1,33 +1,8 @@
-import { useContext } from "react";
 import Calculation from "../Components/Calculation";
 import Options from "../Components/Options";
-import { OperationContext } from "../Contexts";
 import { backgroundImages } from "../Config";
 
-const MathPage = ({ level, flagWrong }) => {
-    const [operation, _] = useContext(OperationContext);
-
-    const question = {
-        number1: Math.round(Math.random() * level * 5),
-        number2: Math.round(Math.random() * level * 5),
-        operation: operation,
-        answer: function () {
-            switch (operation.value) {
-                case "+":
-                    return this.number1 + this.number2;
-                case "-":
-                    return this.number1 - this.number2;
-                case "*":
-                    return this.number1 * this.number2;
-                case "/":
-                    return this.number1 / this.number2;
-
-                default:
-                    break;
-            }
-        },
-    };
-
+const MathPage = ({ question, flagWrong }) => {
     return (
         <div style={styles.background}>
             <Calculation
@@ -36,7 +11,11 @@ const MathPage = ({ level, flagWrong }) => {
                 operation={question.operation}
                 answer={question.answer()}
             />
-            <Options answer={question.answer()} flagWrong={flagWrong} />
+            <Options
+                answer={question.answer()}
+                guessArr={question.guessArr}
+                flagWrong={flagWrong}
+            />
         </div>
     );
 };

@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { HeartContext, OperationContext } from "../Contexts";
+import { OperationContext } from "../Contexts";
 import ConfettiExplosion from "react-confetti-explosion";
 
-const Circle = ({ value, answer }) => {
-    const [_, setHeart] = useContext(HeartContext);
+const Circle = ({ value, answer, flagWrong }) => {
     const [operation, setOperation] = useContext(OperationContext);
 
     const [clicked, setClicked] = useState(false);
@@ -43,12 +42,7 @@ const Circle = ({ value, answer }) => {
                 setExplosion(false);
             }, 1000);
         } else {
-            setHeart((prev) => ({
-                ...prev,
-                first: prev.second ? true : false,
-                second: prev.third ? true : false,
-                third: false,
-            }));
+            flagWrong();
         }
     };
 

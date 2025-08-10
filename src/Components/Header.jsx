@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
-import { HeartContext, OperationContext } from "../Contexts";
+import { OperationContext } from "../Contexts";
 import Btn from "./Btn";
 import { operationsConfig } from "../Config.jsx";
 import HeartIcon from "./HeartIcon.jsx";
 
-const Header = () => {
+const Header = ({ heart }) => {
     const [operation, setOperation] = useContext(OperationContext);
-    const [heart, _] = useContext(HeartContext);
 
     const [open, setOpen] = useState(false);
     const toggleMargin = () => setOpen(!open);

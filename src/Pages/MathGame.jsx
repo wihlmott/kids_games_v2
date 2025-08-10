@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import { use, useMemo, useState } from "react";
 import MathPage from "./MathPage";
 import Header from "../Components/Header";
-import { HeartContext, OperationContext } from "../Contexts";
-
-const MemoMathPage = React.memo(MathPage);
+import { OperationContext } from "../Contexts";
 
 const MathGame = ({ level }) => {
     const [operation, setOperation] = useState({
@@ -18,12 +16,48 @@ const MathGame = ({ level }) => {
         third: true,
     });
 
+    const question = useMemo(() => {
+        return {
+            number1: Math.round(Math.random() * level * 5),
+            number2: Math.round(Math.random() * level * 5),
+            operation: operation,
+            answer: function () {
+                switch (operation.value) {
+                    case "+":
+                        return this.number1 + this.number2;
+                    case "-":
+                        return this.number1 - this.number2;
+                    case "*":
+                        return this.number1 * this.number2;
+                    case "/":
+                        return this.number1 / this.number2;
+
+                    default:
+                        break;
+                }
+            },
+            guessArr: function () {
+                const guessArr = shuffleArray([-3, -2, -1, 1, 2, 3]).map(
+                    (el) => answer + el
+                );
+                return shuffleArray([answer, guessArr[0], guessArr[1]]);
+            },
+        };
+    }, [operation]);
+
+    const flagWrong = () => {
+        setHeart((prev) => ({
+            ...prev,
+            first: prev.second ? true : false,
+            second: prev.third ? true : false,
+            third: false,
+        }));
+    };
+
     return (
         <OperationContext.Provider value={[operation, setOperation]}>
-            <HeartContext.Provider value={[heart, setHeart]}>
-                <Header />
-                <MemoMathPage level={level} />
-            </HeartContext.Provider>
+            <Header heart={heart} />
+            <MathPage question={question} flagWrong={flagWrong} />
         </OperationContext.Provider>
     );
 };
