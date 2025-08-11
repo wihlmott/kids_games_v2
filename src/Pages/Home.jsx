@@ -13,6 +13,13 @@ const Home = () => {
                     text={"memory game"}
                     transparent={false}
                 />
+
+                <LinkBtn
+                    to="OXOGame"
+                    text={"OXO game"}
+                    transparent={false}
+                    settings={false}
+                />
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import mathBackground from "/mathBackground.webp";
 import memoryBackground from "/memoryBackground.webp";
 import homeBackground from "/homeBackground.webp";
+import OXOBackground from "/OXOBackground.jpg";
 
 import bear1 from "./assets/memory_images/bear1.jpg";
 import cow1 from "./assets/memory_images/cow1.jpg";
@@ -25,7 +26,11 @@ export const backgroundImages = {
     mathBackground: mathBackground,
     memoryBackground: memoryBackground,
     homeBackground: homeBackground,
+    OXOBackground: OXOBackground,
 };
+
+export const activeShadow =
+    "drop-shadow(5px 0 3px white) drop-shadow(-5px 0 3px white) drop-shadow(0 5px 3px white) drop-shadow(0 -5px 3px white)";
 
 export const operationsConfig = [
     { title: "addition", value: "+", symbol: "+", amount: 0 },

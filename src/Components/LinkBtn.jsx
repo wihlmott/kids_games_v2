@@ -8,7 +8,13 @@ import SettingsMenu from "./SettingsMenu";
 import { gameModesConfig } from "../Config";
 import { SettingsContext } from "../Contexts";
 
-const LinkBtn = ({ to, text, onClick, transparent = true }) => {
+const LinkBtn = ({
+    to,
+    text,
+    onClick,
+    transparent = true,
+    settings = true,
+}) => {
     const navigate = useNavigate();
 
     const [_, setGameSettings] = useContext(SettingsContext);
@@ -24,7 +30,7 @@ const LinkBtn = ({ to, text, onClick, transparent = true }) => {
     return (
         <div style={{ margin: "auto", width: "fit-content" }}>
             <Link
-                // to={to}
+                to={!settings ? to : "/"}
                 style={{
                     textDecoration: "none",
                     color: "black",
@@ -35,7 +41,7 @@ const LinkBtn = ({ to, text, onClick, transparent = true }) => {
                 <Btn text={text} onClick={onClick} transparent={transparent} />
             </Link>
             {/* <SettingsBtn onClick={handleSettingsOpen} /> */}
-            {openSettings && (
+            {settings && openSettings && (
                 <SettingsMenu
                     options={gameModesConfig[text]}
                     gameMode={text}

@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
-import MemoryBoard from "./MemoryBoard";
+import Board from "./Board";
 import Card from "../Components/Card";
+import { amountOfMatches, backgroundImages } from "../Config";
 
 const MemoryGame = ({ cards }) => {
     const [players, setPlayers] = useState({
-        player1: { score: 0 },
-        player2: { score: 0 },
+        player1: { value: 0 },
+        player2: { value: 0 },
         active: "player1",
     });
 
     const [firstSelection, setFirstSelection] = useState(null);
     const [secondSelection, setSecondSelection] = useState(null);
     const [found, setFound] = useState([]);
-
-    const togglePlayer = () =>
-        setPlayers((prev) => {
-            return { ...prev, active: !prev.active };
-        });
 
     const sendSelection = (text, id) => {
         if (secondSelection != null) return;
@@ -34,7 +30,7 @@ const MemoryGame = ({ cards }) => {
                       return {
                           ...prev,
                           [prev.active]: {
-                              score: prev[prev.active].score + 1,
+                              value: prev[prev.active].value + 1,
                           },
                           active:
                               prev.active == "player1" ? "player1" : "player2",
@@ -61,7 +57,15 @@ const MemoryGame = ({ cards }) => {
 
     return (
         <>
-            <MemoryBoard togglePlayer={togglePlayer} players={players} />;
+            <Board
+                backgroundImage={backgroundImages.memoryBackground}
+                players={players}
+                endTest={
+                    players["player1"].value + players["player2"].value ==
+                    amountOfMatches
+                }
+            />
+            ;
             <div style={styles.cardContainer}>
                 {cards.map((card, i) => {
                     return (

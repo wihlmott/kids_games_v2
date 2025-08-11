@@ -1,4 +1,4 @@
-import { use, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import MathPage from "./MathPage";
 import Header from "../Components/Header";
 import { OperationContext } from "../Contexts";

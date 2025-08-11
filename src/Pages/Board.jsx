@@ -1,9 +1,44 @@
 import ConfettiExplosion from "react-confetti-explosion";
-import { amountOfMatches, backgroundImages } from "../Config";
+import { activeShadow } from "../Config";
 
-const MemoryBoard = ({ players }) => {
-    const activeShadow =
-        "drop-shadow(5px 0 3px white) drop-shadow(-5px 0 3px white) drop-shadow(0 5px 3px white) drop-shadow(0 -5px 3px white)";
+const Board = ({ backgroundImage, players, endTest }) => {
+    const styles = {
+        background: {
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: ".85",
+            height: "100vh",
+            width: "100vw",
+            position: "fixed",
+            top: "0",
+            zIndex: "-1",
+            display: "flex",
+            alignItems: "center",
+        },
+        name: {
+            position: "absolute",
+            height: "10vh",
+            width: "100%",
+        },
+
+        playerDiv: {
+            position: "absolute",
+            display: "block",
+            width: "100%",
+            height: "50%",
+        },
+
+        text: {
+            textTransform: "uppercase",
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+            margin: "0",
+        },
+    };
 
     return (
         <div style={styles.background}>
@@ -27,12 +62,11 @@ const MemoryBoard = ({ players }) => {
                                     : "none",
                         }}
                     >
-                        player 1 -- {players.player1.score}
+                        player 1 -- {players.player1.value}
                     </p>
                 </div>
             </div>
-            {players["player1"].score + players["player2"].score ==
-                amountOfMatches && (
+            {endTest && (
                 <ConfettiExplosion
                     force={0.8}
                     duration={3000}
@@ -60,7 +94,7 @@ const MemoryBoard = ({ players }) => {
                                     : "none",
                         }}
                     >
-                        player 2 -- {players.player2.score}
+                        player 2 -- {players.player2.value}
                     </p>
                 </div>
             </div>
@@ -68,42 +102,4 @@ const MemoryBoard = ({ players }) => {
     );
 };
 
-const styles = {
-    background: {
-        backgroundImage: `url(${backgroundImages.memoryBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        opacity: ".85",
-        height: "100vh",
-        width: "100vw",
-        position: "fixed",
-        top: "0",
-        zIndex: "-1",
-        display: "flex",
-        alignItems: "center",
-    },
-    name: {
-        position: "absolute",
-        height: "10vh",
-        width: "100%",
-    },
-
-    playerDiv: {
-        position: "absolute",
-        display: "block",
-        width: "100%",
-        height: "50%",
-    },
-
-    text: {
-        textTransform: "uppercase",
-        position: "absolute",
-        left: "50%",
-        transform: "translateX(-50%)",
-        fontSize: "1.5rem",
-        fontWeight: "bold",
-        margin: "0",
-    },
-};
-
-export default MemoryBoard;
+export default Board;

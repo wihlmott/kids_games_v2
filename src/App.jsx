@@ -7,6 +7,7 @@ import MemoryGame from "./Pages/MemoryGame";
 import { SettingsContext } from "./Contexts";
 import { doubleAndShuffle } from "./helpers";
 import { amountOfMatches } from "./Config";
+import OXOGame from "./Pages/OXOGame";
 
 function App() {
     const [gameSettings, setGameSettings] = useState({
@@ -39,6 +40,7 @@ function App() {
                         path="MemoryGame"
                         element={<MemoryGame cards={cards} />}
                     />
+                    <Route path="OXOGame" element={<OXOGame />} />
                     {/* <Route path="*" element={<NoPage />} /> */}
                     {/* </Route> */}
                 </Routes>
