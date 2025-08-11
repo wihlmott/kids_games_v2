@@ -12,6 +12,7 @@ const OXOGame = () => {
         active: "player1",
     });
     const [test, setTest] = useState(false);
+    const [winningArr, setWinningArr] = useState([]);
 
     const winConditions = [
         [0, 1, 2],
@@ -29,9 +30,11 @@ const OXOGame = () => {
 
         const currentArr = [...players[players.active].selected, i];
 
-        return winConditions.some((condition) =>
-            condition.every((index) => currentArr.includes(index))
-        );
+        return winConditions.some((condition) => {
+            condition.every((index) => currentArr.includes(index)) &&
+                setWinningArr(condition);
+            return condition.every((index) => currentArr.includes(index));
+        });
     };
 
     const updateSelection = (i) => {
@@ -73,6 +76,7 @@ const OXOGame = () => {
                             playerValue={players.active}
                             togglePlayer={togglePlayer}
                             index={i}
+                            green={winningArr.includes(i)}
                         />
                     );
                 })}

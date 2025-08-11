@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Block = ({ playerValue, togglePlayer, index }) => {
+const Block = ({ playerValue, togglePlayer, index, green = false }) => {
     const [value, setValue] = useState("");
 
     const handleClick = () => {
@@ -18,7 +18,9 @@ const Block = ({ playerValue, togglePlayer, index }) => {
                 boxShadow: "2px 2px 5px rgba(0,0,0,.5)",
                 boxSizing: "border-box",
                 margin: "5px 5px 0 0",
-                backgroundColor: "rgba(255,255,255,.85)",
+                backgroundColor: `${
+                    green ? "rgba(64, 255, 0, 0.85)" : " rgba(255,255,255,.85)"
+                }`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
