@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import MathPage from "./MathPage";
 import Header from "../Components/Header";
 import { OperationContext } from "../Contexts";
+import EndGameSequence from "../Components/EndGameSequence";
 
 const MathGame = ({ level }) => {
     const [operation, setOperation] = useState({
@@ -15,6 +16,10 @@ const MathGame = ({ level }) => {
         second: true,
         third: true,
     });
+
+    const reset = () => {
+        console.log(`reset`);
+    };
 
     const question = useMemo(() => {
         return {
@@ -58,6 +63,7 @@ const MathGame = ({ level }) => {
         <OperationContext.Provider value={[operation, setOperation]}>
             <Header heart={heart} />
             <MathPage question={question} flagWrong={flagWrong} />
+            {heart.first == false && <EndGameSequence reset={reset} />}
         </OperationContext.Provider>
     );
 };

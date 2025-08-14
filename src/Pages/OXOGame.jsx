@@ -1,7 +1,8 @@
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import Block from "../Components/Block.jsx";
-import { backgroundImages } from "../Config";
+import { backgroundImages, winConditions } from "../Config";
 import Board from "./Board.jsx";
+import EndGameSequence from "../Components/EndGameSequence.jsx";
 
 const OXOGame = () => {
     const indexes = Array.from({ length: 9 }, (_, i) => null);
@@ -11,19 +12,12 @@ const OXOGame = () => {
         player2: { value: "O", selected: [] },
         active: "player1",
     });
-    const [test, setTest] = useState(false);
     const [winningArr, setWinningArr] = useState([]);
+    const [runEnd, setRunEnd] = useState({ status: false, winner: "" });
 
-    const winConditions = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-    ];
+    const reset = () => {
+        console.log(`reset`);
+    };
 
     const checkWin = (i) => {
         if (players[players.active].selected.length < 2) return false;
@@ -32,13 +26,20 @@ const OXOGame = () => {
 
         return winConditions.some((condition) => {
             condition.every((index) => currentArr.includes(index)) &&
-                setWinningArr(condition);
+                (() => {
+                    setWinningArr(condition);
+                    setRunEnd({
+                        status: true,
+                        winner: players[players.active].value,
+                    });
+                })();
+
             return condition.every((index) => currentArr.includes(index));
         });
     };
 
     const updateSelection = (i) => {
-        checkWin(i) && setTest(true);
+        checkWin(i);
 
         setPlayers((prev) => {
             return {
@@ -53,7 +54,7 @@ const OXOGame = () => {
 
     const togglePlayer = (_, i) => {
         updateSelection(i);
-        if (test) return;
+        if (runEnd.status) return;
 
         setPlayers((prev) => ({
             ...prev,
@@ -66,7 +67,7 @@ const OXOGame = () => {
             <Board
                 backgroundImage={backgroundImages.OXOBackground}
                 players={players}
-                endTest={test}
+                endTest={runEnd.status}
             />
             <div style={styles.grid}>
                 {indexes.map((el, i) => {
@@ -81,6 +82,12 @@ const OXOGame = () => {
                     );
                 })}
             </div>
+            {runEnd.status && (
+                <EndGameSequence
+                    reset={reset}
+                    message={`${runEnd.winner} - WINS`}
+                />
+            )}
         </>
     );
 };

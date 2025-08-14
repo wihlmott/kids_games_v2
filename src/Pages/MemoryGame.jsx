@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Board from "./Board";
 import Card from "../Components/Card";
 import { amountOfMatches, backgroundImages } from "../Config";
+import EndGameSequence from "../Components/EndGameSequence";
 
 const MemoryGame = ({ cards }) => {
     const [players, setPlayers] = useState({
@@ -55,6 +56,10 @@ const MemoryGame = ({ cards }) => {
         secondSelection ? reset() : null;
     }, [secondSelection]);
 
+    const resetGame = () => {
+        console.log(`reset`);
+    };
+
     return (
         <>
             <Board
@@ -90,6 +95,21 @@ const MemoryGame = ({ cards }) => {
                     );
                 })}
             </div>
+            {players["player1"].value + players["player2"].value ==
+                amountOfMatches && (
+                <EndGameSequence
+                    reset={resetGame}
+                    message={
+                        players.player1.value == players.player2.value
+                            ? "DRAW"
+                            : `Player ${
+                                  players.player1.value > players.player2.value
+                                      ? "1"
+                                      : "2"
+                              } - WINS`
+                    }
+                />
+            )}
         </>
     );
 };
