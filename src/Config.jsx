@@ -29,8 +29,8 @@ export const backgroundImages = {
     OXOBackground: OXOBackground,
 };
 
-export const activeShadow =
-    "drop-shadow(5px 0 3px white) drop-shadow(-5px 0 3px white) drop-shadow(0 5px 3px white) drop-shadow(0 -5px 3px white)";
+export const activeShadow = (color = "white") =>
+    `drop-shadow(5px 0 3px ${color}) drop-shadow(-5px 0 3px ${color}) drop-shadow(0 5px 3px ${color}) drop-shadow(0 -5px 3px ${color})`;
 
 export const operationsConfig = [
     { title: "addition", value: "+", symbol: "+", amount: 0 },

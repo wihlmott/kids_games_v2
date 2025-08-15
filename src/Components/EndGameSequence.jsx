@@ -2,13 +2,62 @@ import { useNavigate } from "react-router-dom";
 import BackArrowIcon from "./BackArrowIcon";
 import RefreshIcon from "./RefreshIcon";
 
+import { activeShadow } from "../Config";
+
 const EndGameSequence = ({ reset, message = "Game Over" }) => {
     const navigate = useNavigate();
     const goHome = () => navigate("/");
 
+    const styles = {
+        overlay: {
+            position: "fixed",
+            height: "100vh",
+            width: "100vw",
+            backgroundColor: `${
+                message == "Game Over"
+                    ? `rgba(246, 85, 85, 0.25)`
+                    : `rgba(255, 255, 255, 0.3)`
+            }`,
+        },
+        buttonsDiv: {
+            boxSizing: "border-box",
+            display: "flex",
+            justifyContent: "center",
+            borderRadius: "30px",
+            padding: "20px",
+            backgroundColor: "#fff",
+            boxShadow: "2px 2px 12px rgba(0,0,0,.75)",
+            width: "144px",
+            margin: "10px auto",
+        },
+        button: {
+            borderRadius: "50%",
+            border: "none",
+            boxShadow:
+                "inset 0px 0px 2px rgba(0,0,0,.2), 0 0 6px rgba(0,0,0,.3)",
+            padding: "20px",
+            width: "65px",
+            height: "65px",
+            textAlign: "center",
+            margin: "-12px 2px",
+        },
+    };
+
     return (
         <div style={styles.overlay}>
-            {message}
+            <p
+                style={{
+                    fontWeight: "bold",
+                    fontSize: "52px",
+                    textAlign: "center",
+                    margin: "150px 0 0 0",
+                    filter: activeShadow(
+                        message == "Game Over" ? "red" : "white"
+                    ),
+                }}
+            >
+                {message}
+            </p>
             <div style={styles.buttonsDiv}>
                 <button style={styles.button} onClick={reset}>
                     <RefreshIcon />
@@ -19,36 +68,6 @@ const EndGameSequence = ({ reset, message = "Game Over" }) => {
             </div>
         </div>
     );
-};
-
-const styles = {
-    overlay: {
-        position: "fixed",
-        height: "100vh",
-        width: "100vw",
-        backgroundColor: "rgba(255,255,255,.3)",
-    },
-    buttonsDiv: {
-        boxSizing: "border-box",
-        display: "flex",
-        justifyContent: "center",
-        borderRadius: "30px",
-        padding: "20px",
-        backgroundColor: "#fff",
-        boxShadow: "inset 1px 1px 4px rgba(0,0,0,.2) 0 2px 6px rgba(0,0,0,.6)",
-        width: "144px",
-        margin: "140px auto 0 auto",
-    },
-    button: {
-        borderRadius: "50%",
-        border: "none",
-        boxShadow: "2px 2px 8px  rgba(0,0,0,.2)",
-        padding: "20px",
-        width: "65px",
-        height: "65px",
-        textAlign: "center",
-        margin: "-12px 2px",
-    },
 };
 
 export default EndGameSequence;

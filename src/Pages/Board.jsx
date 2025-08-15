@@ -58,7 +58,7 @@ const Board = ({ backgroundImage, players, endTest }) => {
                             bottom: "0",
                             filter:
                                 players.active == "player1"
-                                    ? activeShadow
+                                    ? activeShadow()
                                     : "none",
                         }}
                     >
@@ -90,7 +90,7 @@ const Board = ({ backgroundImage, players, endTest }) => {
                             top: "0",
                             filter:
                                 players.active == "player2"
-                                    ? activeShadow
+                                    ? activeShadow()
                                     : "none",
                         }}
                     >
