@@ -4,21 +4,25 @@ import Header from "../Components/Header";
 import { OperationContext } from "../Contexts";
 import EndGameSequence from "../Components/EndGameSequence";
 
+const defaultOperation = {
+    title: "addition",
+    value: "+",
+    symbol: "+",
+    amount: 0,
+};
+const defaultHeart = {
+    first: true,
+    second: true,
+    third: true,
+};
+
 const MathGame = ({ level }) => {
-    const [operation, setOperation] = useState({
-        title: "addition",
-        value: "+",
-        symbol: "+",
-        amount: 0,
-    });
-    const [heart, setHeart] = useState({
-        first: true,
-        second: true,
-        third: true,
-    });
+    const [operation, setOperation] = useState(defaultOperation);
+    const [heart, setHeart] = useState(defaultHeart);
 
     const reset = () => {
-        console.log(`reset`);
+        setOperation(defaultOperation);
+        setHeart(defaultHeart);
     };
 
     const question = useMemo(() => {

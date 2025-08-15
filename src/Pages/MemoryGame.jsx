@@ -1,19 +1,33 @@
 import { useEffect, useState } from "react";
 import Board from "./Board";
 import Card from "../Components/Card";
-import { amountOfMatches, backgroundImages } from "../Config";
 import EndGameSequence from "../Components/EndGameSequence";
+import { amountOfMatches, backgroundImages } from "../Config";
+import { shuffleArray } from "../helpers.js";
 
-const MemoryGame = ({ cards }) => {
-    const [players, setPlayers] = useState({
+const defaultState = {
+    players: {
         player1: { value: 0 },
         player2: { value: 0 },
         active: "player1",
-    });
+    },
+    firstSelection: null,
+    secondSelection: null,
+    found: [],
+};
 
-    const [firstSelection, setFirstSelection] = useState(null);
-    const [secondSelection, setSecondSelection] = useState(null);
-    const [found, setFound] = useState([]);
+const MemoryGame = ({ cards }) => {
+    let cardsToUse = cards;
+
+    const [players, setPlayers] = useState(defaultState.players);
+
+    const [firstSelection, setFirstSelection] = useState(
+        defaultState.firstSelection
+    );
+    const [secondSelection, setSecondSelection] = useState(
+        defaultState.secondSelection
+    );
+    const [found, setFound] = useState(defaultState.found);
 
     const sendSelection = (text, id) => {
         if (secondSelection != null) return;
@@ -57,7 +71,9 @@ const MemoryGame = ({ cards }) => {
     }, [secondSelection]);
 
     const resetGame = () => {
-        console.log(`reset`);
+        setPlayers(defaultState.players);
+        setFound(defaultState.found);
+        cardsToUse = shuffleArray(cards);
     };
 
     return (
@@ -72,7 +88,7 @@ const MemoryGame = ({ cards }) => {
             />
             ;
             <div style={styles.cardContainer}>
-                {cards.map((card, i) => {
+                {cardsToUse.map((card, i) => {
                     return (
                         <Card
                             key={i}

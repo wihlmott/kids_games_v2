@@ -4,19 +4,29 @@ import { backgroundImages, winConditions } from "../Config";
 import Board from "./Board.jsx";
 import EndGameSequence from "../Components/EndGameSequence.jsx";
 
-const OXOGame = () => {
-    const indexes = Array.from({ length: 9 }, (_, i) => null);
-
-    const [players, setPlayers] = useState({
+const defaultState = {
+    players: {
         player1: { value: "X", selected: [] },
         player2: { value: "O", selected: [] },
         active: "player1",
-    });
-    const [winningArr, setWinningArr] = useState([]);
-    const [runEnd, setRunEnd] = useState({ status: false, winner: "" });
+    },
+    winningArr: [],
+    runEnd: { status: false, winner: "" },
+};
+
+const OXOGame = () => {
+    const indexes = Array.from({ length: 9 }, (_, i) => null);
+
+    const [players, setPlayers] = useState(defaultState.players);
+    const [winningArr, setWinningArr] = useState(defaultState.winningArr);
+    const [runEnd, setRunEnd] = useState(defaultState.runEnd);
 
     const reset = () => {
-        console.log(`reset`);
+        setPlayers(defaultState.players);
+        setWinningArr(defaultState.winningArr);
+        setRunEnd(defaultState.runEnd);
+
+        window.location.reload(true); //not resetting blocks, forcing page reload. -- find better solution
     };
 
     const checkWin = (i) => {

@@ -3,14 +3,21 @@ import BackArrowIcon from "./BackArrowIcon";
 import RefreshIcon from "./RefreshIcon";
 
 import { activeShadow } from "../Config";
+import { useEffect, useState } from "react";
 
 const EndGameSequence = ({ reset, message = "Game Over" }) => {
     const navigate = useNavigate();
     const goHome = () => navigate("/");
 
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        setTimeout(() => setOpen(true), message == "Game Over" ? 0 : 600);
+    }, []);
+
     const styles = {
         overlay: {
             position: "fixed",
+            transform: `translateY(${open ? "0" : "100%"})`,
             height: "100vh",
             width: "100vw",
             backgroundColor: `${
@@ -18,6 +25,7 @@ const EndGameSequence = ({ reset, message = "Game Over" }) => {
                     ? `rgba(246, 85, 85, 0.25)`
                     : `rgba(255, 255, 255, 0.3)`
             }`,
+            transition: "transform .8s ease-in",
         },
         buttonsDiv: {
             boxSizing: "border-box",
@@ -48,11 +56,11 @@ const EndGameSequence = ({ reset, message = "Game Over" }) => {
             <p
                 style={{
                     fontWeight: "bold",
-                    fontSize: "52px",
+                    fontSize: "42px",
                     textAlign: "center",
                     margin: "150px 0 0 0",
                     filter: activeShadow(
-                        message == "Game Over" ? "red" : "white"
+                        message == "Game Over" ? "red" : "lime"
                     ),
                 }}
             >
