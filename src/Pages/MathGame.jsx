@@ -3,6 +3,7 @@ import MathPage from "./MathPage";
 import Header from "../Components/Header";
 import { OperationContext } from "../Contexts";
 import EndGameSequence from "../Components/EndGameSequence";
+import Timer from "../Components/Timer";
 
 const defaultOperation = {
     title: "addition",
@@ -17,7 +18,10 @@ const defaultHeart = {
 };
 
 const MathGame = ({ level }) => {
-    const [operation, setOperation] = useState(defaultOperation);
+    const [operation, setOperation] = useState({
+        ...defaultOperation,
+        header: true,
+    });
     const [heart, setHeart] = useState(defaultHeart);
 
     const reset = () => {
@@ -68,8 +72,10 @@ const MathGame = ({ level }) => {
             <Header heart={heart} />
             <MathPage question={question} flagWrong={flagWrong} />
             {heart.first == false && <EndGameSequence reset={reset} />}
+            {level >= 3 && !operation.header && (
+                <Timer flagTimeout={flagWrong} />
+            )}
         </OperationContext.Provider>
     );
 };
-
 export default MathGame;
