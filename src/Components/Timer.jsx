@@ -6,7 +6,7 @@ const Timer = ({ time = 5000, flagTimeout }) => {
 
     const [color, setColor] = useState({
         color: "rgba(0,240,0,.825)",
-        filled: 100,
+        filled: 130,
     });
 
     useEffect(() => {
